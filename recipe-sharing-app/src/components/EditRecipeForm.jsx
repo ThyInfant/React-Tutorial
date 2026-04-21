@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import useRecipeStore from "../store/useRecipeStore";
 
 const EditRecipeForm = ({ recipeId }) => {
@@ -11,6 +11,12 @@ const EditRecipeForm = ({ recipeId }) => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
 
+  useEffect(() => {
+    if (recipe) {
+      setTitle(recipe.title);
+      setDescription(recipe.description);
+    }
+  }, [recipe]);
   const handleSubmit = (e) => {
     e.preventDefault();
 
