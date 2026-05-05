@@ -1,7 +1,12 @@
 import React from "react";
+import SearchBar from "./components/SearchBar";
 
 function App() {
-  return <div>App</div>;
+  return (
+    <div>
+      <SearchBar />
+    </div>
+  );
 }
 
 export default App;
