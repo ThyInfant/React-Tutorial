@@ -1,0 +1,135 @@
+/* Sidebar container */
+.sidebar {
+  position: fixed;
+  left: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 60px;
+  background-color: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(10px);
+  border-radius: 20px;
+  padding: 1.5rem 0;
+  z-index: 999;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  /* Remove overflow-y: auto if not needed */
+}
+
+/* Hide scrollbar (only if content overflows) */
+.sidebar::-webkit-scrollbar {
+  width: 3px;
+}
+
+.sidebar::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.sidebar::-webkit-scrollbar-thumb {
+  background: #e50914;
+  border-radius: 5px;
+}
+
+/* Menu container */
+.sidebar-menu {
+  display: flex;
+  flex-direction: column;
+  gap: 1.8rem;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Individual sidebar items */
+.sidebar-item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 0.75rem 0;
+  border-radius: 12px;
+  color: white;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+/* Hide text spans (icons only) */
+.sidebar-item span {
+  display: none;
+}
+
+/* Override default link colors */
+.sidebar-item:link,
+.sidebar-item:visited,
+.sidebar-item:active {
+  color: white;
+}
+
+/* Hover effect - FIXED (removed transform that caused glitch) */
+.sidebar-item:hover {
+  background-color: rgba(229, 9, 20, 0.2); /* Fixed: 259 → 229 */
+  color: #e50914;
+  /* Removed transform: translateX(5px) - this was causing the glitch */
+}
+
+/* Icon hover effect */
+.sidebar-item:hover svg {
+  color: #e50914;
+  transform: scale(1.1); /* Subtle zoom instead of movement */
+}
+
+/* Active page styling - ONLY ONE DEFINITION */
+.sidebar-item.active {
+  background-color: rgba(229, 9, 20, 0.3);
+  color: #e50914;
+  position: relative;
+}
+
+/* Active indicator bar - clean red line on the left */
+.sidebar-item.active::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 3px;
+  height: 60%;
+  background-color: #e50914;
+  border-radius: 0 3px 3px 0;
+}
+
+/* Active icon color */
+.sidebar-item.active svg {
+  color: #e50914;
+}
+
+/* Tooltip on hover - shows text when hovering */
+.sidebar-item:hover::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  left: 70px;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: rgba(0, 0, 0, 0.9);
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  font-size: 0.8rem;
+  white-space: nowrap;
+  font-family: "Poppins", sans-serif;
+  z-index: 1000;
+  backdrop-filter: blur(5px);
+  border: 1px solid rgba(229, 9, 20, 0.5);
+  pointer-events: none;
+  animation: fadeIn 0.2s ease;
+}
+
+/* Tooltip fade animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-50%) translateX(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(-50%) translateX(0);
+  }
+}
